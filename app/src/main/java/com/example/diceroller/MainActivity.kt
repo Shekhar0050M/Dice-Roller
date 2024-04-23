@@ -5,10 +5,12 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -50,19 +52,22 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier) {
         5 -> R.drawable.dice_5
         else -> R.drawable.dice_6
     }
-    Column (
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(top = 190.dp, bottom = 190.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.fillMaxHeight()
     ) {
-        Image(
-            painter = painterResource(id = imageResource),
-            contentDescription = result.toString()
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = { result = (1..6).random() }) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Image(
+                painter = painterResource(id = imageResource),
+                contentDescription = result.toString()
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            Button(onClick = { result = (1..6).random() }) {
                 Text(text = stringResource(R.string.roll), fontSize = 24.sp)
+            }
         }
     }
 }
